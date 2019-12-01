@@ -2,8 +2,10 @@
   <div class="forecast-list-item block">
     <div class="time">12:00</div>
     <figure>
-      <!-- <img src="" alt="Sun"> -->
-      <p>Sunny</p>
+      <img src="../assets/images/01d@2x.png" alt="Sun">
+      <figcaption>
+         <p>Sunny</p>
+      </figcaption>
     </figure>
     <p>12-13C*</p>
   </div>
