@@ -3,6 +3,7 @@
     <h1>Weather widget</h1>
     <city-to-search />
     <forecast />
+    <!-- <axio v-on:click="getData" /> -->
   </div>
 </template>
 
@@ -16,16 +17,13 @@ import Forecast from './Forecast.vue';
 const key = '16930e9bdf3ad11aa05152aeebf51f84';
 const query = `https://api.openweathermap.org/data/2.5/forecast?appId=${key}&q=Cherkasy,ua`;
 
-// Vue.component('CityToSearch', CityToSearch);
-// Vue.component('Forecast', Forecast);
-
 Vue.component('axio', {
   props: ['title'],
-  template: '<h3>{{ title }}</h3>',
+  template: '<h3>Lalalal</h3>',
   data () {
     return {
       getData () {
-        axios.get('/user?ID=12345')
+        axios.get(query)
           .then(function (response) {
             // handle success
             console.log(response);
