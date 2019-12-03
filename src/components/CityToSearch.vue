@@ -9,6 +9,7 @@
     <select name="country-code" id="country-code">
       <option value="ua">UA</option>
       <option value="us">US</option>
+      <option value="ru">RU</option>
       <option value="gb">GB</option>
       <option value="de">DE</option>
     </select>
@@ -20,7 +21,7 @@
 <script>
 import Vue from 'vue';
 import axios from 'axios';
-import { SET_DAY_LIST, SET_CITY_NAME } from '../store/mutation-types';
+import { SET_DAY_LIST, SET_DAYS, SET_CITY_NAME } from '../store/mutation-types';
 import { store } from '../store';
 
 const key = '16930e9bdf3ad11aa05152aeebf51f84';
@@ -61,8 +62,14 @@ export default {
 
       axios.get(query)
         .then(function (response) {
+          store.dispatch('setUniqueDays', response.data.list);
+          //send thing that will structure array of days > array of hours
+
           store.commit(SET_DAY_LIST, response.data.list);
           store.commit(SET_CITY_NAME, response.data.city.name);
+
+
+          // store.commit(SET_DAYS, response.data.list);
           console.log(response);
 
         });

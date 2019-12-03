@@ -1,4 +1,4 @@
-const SET_DAY_LIST = 'SET_DAY_LIST';
-const SET_CITY_NAME = 'SET_CITY_NAME';
-
-export { SET_DAY_LIST, SET_CITY_NAME };
+export const
+  SET_DAY_LIST = 'SET_DAY_LIST',
+  SET_CITY_NAME = 'SET_CITY_NAME',
+  SET_DAYS = 'SET_DAYS';

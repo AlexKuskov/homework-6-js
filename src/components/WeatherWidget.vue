@@ -17,22 +17,6 @@ import Forecast from './Forecast.vue';
 const key = '16930e9bdf3ad11aa05152aeebf51f84';
 const query = `https://api.openweathermap.org/data/2.5/forecast?appId=${key}&q=Cherkasy,ua`;
 
-Vue.component('axio', {
-  props: ['title'],
-  template: '<h3>Lalalal</h3>',
-  data () {
-    return {
-      getData () {
-        axios.get(query)
-          .then(function (response) {
-            // handle success
-            console.log(response);
-          });
-      }
-    };
-  }
-});
-
 export default {
   name: 'WeatherWidget',
   props: {

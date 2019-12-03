@@ -3,19 +3,20 @@
     <h2>Forecast</h2>
     <h3>{{ $store.state.cityName }}</h3>
 
-    <div class="forecast-list block" v-for="(day, index) of $store.state.dayList" v-bind:key="index">
+    <div class="forecast-day block" v-for="(day, dayIndex) of $store.state.days" v-bind:key="dayIndex">
+      <h3>{{ getDate(day[0].dt) }}</h3>
+      <div class="hour-list">
+        <div class="hour-list__item" v-for="(hour, hourIndex) of day" v-bind:key="hourIndex + 10">
+          <forecast-list-item :hourWeather="hour" />
+        </div>
+      </div>
+    </div>
+
+    <!-- getDaysNumber($store.state.dayList) -->
+
+    <!-- <div class="forecast-list block" v-for="(day, index) of $store.state.dayList" v-bind:key="index">
       <h3>{{ getDate(day.dt) }}</h3>
       <forecast-list-item :dayWeather="day" />
-    </div>
-
-    <!-- <div class="forecast-list block">
-      <h3>01.12.2019</h3>
-      <forecast-list-item />
-    </div>
-
-    <div class="forecast-list block">
-      <h3>01.12.2019</h3>
-      <forecast-list-item />
     </div> -->
   </div>
 </template>
@@ -64,6 +65,17 @@ export default {
 
       return currentDate.toLocaleDateString('ru-RU');
     }
+    // getDaysNumber (dayList) {
+    //   let days = [];
+
+    //   for (day of dayList) {
+    //     const convertedDate = getDate(day.dt);
+
+    //     if (!~days.indexOf(convertedDate)) days.push(convertedDate);
+    //   }
+
+    //   return days;
+    // }
   }
 };
 </script>
@@ -71,10 +83,13 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .forecast {
-  width: 50%;
+  width: 80%;
   margin: 0 auto;
 }
 .forecast-list {
   display: inline-block;
+}
+.hour-list {
+  display: flex;
 }
 </style>

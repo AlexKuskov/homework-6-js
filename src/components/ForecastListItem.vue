@@ -1,13 +1,13 @@
 <template>
   <div class="forecast-list-item block">
-    <div class="time">{{ getTime(dayWeather.dt) }}</div>
+    <div class="time">{{ getTime(hourWeather.dt) }}</div>
     <figure>
-      <img :src="getImgUrl(dayWeather.weather[0].icon)" alt="Sun">
+      <img :src="getImgUrl(hourWeather.weather[0].icon)" alt="Sun">
       <figcaption>
-         <p>{{ dayWeather.weather[0].main }}</p>
+         <p>{{ hourWeather.weather[0].main }}</p>
       </figcaption>
     </figure>
-    <p>{{ convertKelvinToCelsius(dayWeather.main.temp) }}	&#186;C</p>
+    <p>{{ convertKelvinToCelsius(hourWeather.main.temp) }}	&#186;C</p>
   </div>
 </template>
 
@@ -17,7 +17,7 @@ import Vue from 'vue';
 export default {
   name: 'Forecast',
   props: {
-    dayWeather: Object
+    hourWeather: Object
   },
   methods: {
     getTime (date) {
