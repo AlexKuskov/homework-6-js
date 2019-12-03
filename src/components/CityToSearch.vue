@@ -1,6 +1,6 @@
 <template>
   <form v-on:submit="getForecastData" id="city-to-search" class="city-to-search block">
-    <h2>City to search {{ $store.state.count }}</h2>
+    <h2>City to search</h2>
 
     <label for="city">City:</label>
     <input type="text" name="city" id="city">
@@ -13,15 +13,15 @@
       <option value="de">DE</option>
     </select>
 
-    <!-- <button type="button" v-on:click="getForecastData">Show weather</button> -->
     <button type="submit">Show weather</button>
-    <!-- <show-weather-button /> -->
   </form>
 </template>
 
 <script>
 import Vue from 'vue';
 import axios from 'axios';
+import { SET_DAY_LIST, SET_CITY_NAME } from '../store/mutation-types';
+import { store } from '../store';
 
 const key = '16930e9bdf3ad11aa05152aeebf51f84';
 const query = `https://api.openweathermap.org/data/2.5/forecast?appId=${key}&q=Cherkasy,ua`;
@@ -39,28 +39,6 @@ const query = `https://api.openweathermap.org/data/2.5/forecast?appId=${key}&q=C
 //       submitEvent.preventDefault();
 //     }
 //   }
-// });
-
-
-
-// Vue.component('show-weather-button', {
-//   data() {
-//     return {
-
-//     };
-//   },
-//   methods: {
-//     getData (clickEvent) {
-//       axios.get('query')
-//         .then(function (response) {
-//           // handle success
-//           console.log(response);
-//         });
-
-//       clickEvent.preventDefault();
-//     }
-//   },
-//   template: `<button type="submit" v-on:click="getData">Show weather</button>`
 // });
 
 export default {
@@ -82,13 +60,12 @@ export default {
       e.preventDefault();
 
       axios.get(query)
-      .then(function (response) {
-        console.log(response);
-      });
+        .then(function (response) {
+          store.commit(SET_DAY_LIST, response.data.list);
+          store.commit(SET_CITY_NAME, response.data.city.name);
+          console.log(response);
 
-      // console.log(e);
-
-
+        });
     }
   }
 };

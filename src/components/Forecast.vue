@@ -1,24 +1,22 @@
 <template>
   <div class="forecast block">
     <h2>Forecast</h2>
+    <h3>{{ $store.state.cityName }}</h3>
+
+    <div class="forecast-list block" v-for="(day, index) of $store.state.dayList" v-bind:key="index">
+      <h3>{{ getDate(day.dt) }}</h3>
+      <forecast-list-item :dayWeather="day" />
+    </div>
+
+    <!-- <div class="forecast-list block">
+      <h3>01.12.2019</h3>
+      <forecast-list-item />
+    </div>
 
     <div class="forecast-list block">
       <h3>01.12.2019</h3>
       <forecast-list-item />
-      <forecast-list-item />
-      <forecast-list-item />
-      <forecast-list-item />
-    </div>
-
-    <div class="forecast-list block">
-      <h3>01.12.2019</h3>
-      <forecast-list-item />
-    </div>
-
-    <div class="forecast-list block">
-      <h3>01.12.2019</h3>
-      <forecast-list-item />
-    </div>
+    </div> -->
   </div>
 </template>
 
@@ -29,6 +27,12 @@ import ForecastListItem from './ForecastListItem.vue';
 
 const key = '16930e9bdf3ad11aa05152aeebf51f84';
 const query = `https://api.openweathermap.org/data/2.5/forecast?appId=${key}&q=Cherkasy,ua`;
+
+// list[0].dt - date
+// list[0].weather[0].icon
+// list[0].weather[0].main
+// list[0].main.temp
+// data.city.name
 
 // Vue.component('axio', {
 //   props: ['title'],
@@ -53,6 +57,13 @@ export default {
   },
   components: {
     'forecast-list-item': ForecastListItem
+  },
+  methods: {
+    getDate (date) {
+      const currentDate = new Date(date * 1000);
+
+      return currentDate.toLocaleDateString('ru-RU');
+    }
   }
 };
 </script>

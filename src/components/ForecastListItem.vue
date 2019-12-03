@@ -1,50 +1,48 @@
 <template>
   <div class="forecast-list-item block">
-    <div class="time">12:00</div>
+    <div class="time">{{ getTime(dayWeather.dt) }}</div>
     <figure>
-      <img src="../assets/images/01d@2x.png" alt="Sun">
+      <img :src="getImgUrl(dayWeather.weather[0].icon)" alt="Sun">
       <figcaption>
-         <p>Sunny</p>
+         <p>{{ dayWeather.weather[0].main }}</p>
       </figcaption>
     </figure>
-    <p>12-13C*</p>
+    <p>{{ convertKelvinToCelsius(dayWeather.main.temp) }}	&#186;C</p>
   </div>
 </template>
 
 <script>
 import Vue from 'vue';
-import axios from 'axios';
-
-const key = '16930e9bdf3ad11aa05152aeebf51f84';
-const query = `https://api.openweathermap.org/data/2.5/forecast?appId=${key}&q=Cherkasy,ua`;
-
-// Vue.component('axio', {
-//   props: ['title'],
-//   template: '<h3>{{ title }}</h3>',
-//   data () {
-//     return {
-//       getData () {
-//         axios.get('/user?ID=12345')
-//           .then(function (response) {
-//             // handle success
-//             console.log(response);
-//           });
-//       }
-//     };
-//   }
-// });
 
 export default {
   name: 'Forecast',
   props: {
-    msg: String
+    dayWeather: Object
+  },
+  methods: {
+    getTime (date) {
+      const currentDate = new Date(date * 1000);
+      const options = { hour: '2-digit', minute: '2-digit' };
+
+      return currentDate.toLocaleTimeString('ru-RU', options);
+    },
+    getImgUrl(weatherIcon) {
+      var images = require.context('../assets/images/', false, /\.png$/);
+
+      return images('./' + weatherIcon + "@2x.png");
+    },
+    convertKelvinToCelsius(kelvinTemperature) {
+      const celsiusTemperature = kelvinTemperature - 273.15;
+
+      return Math.round(celsiusTemperature);
+    }
   }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-.forecast-list-item {
-  // display: inline-block;
-}
+// .forecast-list-item {
+//   // display: inline-block;
+// }
 </style>
