@@ -1,7 +1,10 @@
 export const mutations = {
-  SET_DAY_LIST: 'SET_DAY_LIST',
   SET_CITY_NAME: 'SET_CITY_NAME',
   SET_DAYS: 'SET_DAYS',
   SET_HINT_DISPLAYING: 'SET_HINT_DISPLAYING',
   SET_LOADING: 'SET_LOADING'
+};
+
+export const actions = {
+  SET_UNIQUE_DAYS: 'SET_UNIQUE_DAYS'
 };

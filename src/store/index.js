@@ -1,21 +1,17 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { mutations } from './mutation-types';
+import { mutations, actions } from './mutation-types';
 
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
   state: {
-    dayList: [],
     days: 0,
     cityName: '',
     isHintDisplayed: true,
     isLoading: false,
   },
   mutations: {
-    [mutations.SET_DAY_LIST] (state, dayList) {
-      state.dayList = dayList;
-    },
     [mutations.SET_DAYS] (state, days) {
       state.days = days;
     },
@@ -30,10 +26,10 @@ export const store = new Vuex.Store({
     }
   },
   actions: {
-    setUniqueDays (context, dayList) {
+    [actions.SET_UNIQUE_DAYS] (context, dayList) {
       let days = [];
-      let currentDate = new Date(dayList[0].dt * 1000).getDate();
       let hours = [];
+      let currentDate = new Date(dayList[0].dt * 1000).getDate();
 
       for (let day of dayList) {
         let monthDate = new Date(day.dt * 1000).getDate();

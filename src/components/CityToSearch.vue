@@ -27,7 +27,7 @@
 <script>
 import Vue from 'vue';
 import axios from 'axios';
-import { mutations } from '../store/mutation-types';
+import { mutations, actions } from '../store/mutation-types';
 import { store } from '../store';
 
 export default {
@@ -42,27 +42,17 @@ export default {
     };
   },
   methods: {
-    getData (submitEvent) {
-      axios.get(query)
-        .then(function (response) {
-          // handle success
-          console.log(response);
-        });
-
-      submitEvent.preventDefault();
-    },
     getForecastData (e) {
+      const key = '16930e9bdf3ad11aa05152aeebf51f84';
+      const query = `https://api.openweathermap.org/data/2.5/forecast?appId=${key}&q=${this.city},${this.countryCode}`;
+
       e.preventDefault();
       store.commit(mutations.SET_HINT_DISPLAYING, false);
       store.commit(mutations.SET_LOADING, true);
 
-      const key = '16930e9bdf3ad11aa05152aeebf51f84';
-      const query = `https://api.openweathermap.org/data/2.5/forecast?appId=${key}&q=${this.city},${this.countryCode}`;
-
       axios.get(query)
         .then(function (response) {
-          store.dispatch('setUniqueDays', response.data.list);
-          store.commit(mutations.SET_DAY_LIST, response.data.list);
+          store.dispatch(actions.SET_UNIQUE_DAYS, response.data.list);
           store.commit(mutations.SET_CITY_NAME, response.data.city.name);
           store.commit(mutations.SET_LOADING, false);
         });
@@ -94,14 +84,12 @@ export default {
   display: inline-block;
   margin: 0 50px 0 20px;
 }
-.city__label {
-  float: left;
-}
 .city__label,
 .country-code-label {
   display: block;
   margin-bottom: 5px;
 }
+.city__label,
 .city__input,
 .country-code-dropdown {
   float: left;
