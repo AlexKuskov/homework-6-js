@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { SET_DAY_LIST, SET_DAYS, SET_CITY_NAME } from './mutation-types';
+import { mutations } from './mutation-types';
 import { isContext } from 'vm';
 
 Vue.use(Vuex);
@@ -9,26 +9,32 @@ export const store = new Vuex.Store({
   state: {
     dayList: [],
     days: 0,
-    cityName: ''
+    cityName: '',
+    isHintDisplayed: true,
+    isLoading: false,
   },
   mutations: {
-    [SET_DAY_LIST] (state, dayList) {
+    [mutations.SET_DAY_LIST] (state, dayList) {
       state.dayList = dayList;
     },
-    [SET_DAYS] (state, days) {
+    [mutations.SET_DAYS] (state, days) {
       state.days = days;
     },
-    [SET_CITY_NAME] (state, cityName) {
+    [mutations.SET_CITY_NAME] (state, cityName) {
       state.cityName = cityName;
+    },
+    [mutations.SET_HINT_DISPLAYING] (state, isHintDisplayed) {
+      state.isHintDisplayed = isHintDisplayed;
+    },
+    [mutations.SET_LOADING] (state, isLoading) {
+      state.isLoading = isLoading;
     }
   },
   actions: {
     setUniqueDays (context, dayList) {
       let days = [];
-      let currentDate = new Date().getDate();
+      let currentDate = new Date(dayList[0].dt * 1000).getDate();
       let hours = [];
-
-      console.log(dayList);
 
       for (let day of dayList) {
         let monthDate = new Date(day.dt * 1000).getDate();
@@ -44,9 +50,7 @@ export const store = new Vuex.Store({
 
       days.push(hours);
 
-      // console.log(days);
-
-      context.commit(SET_DAYS, days);
+      context.commit(mutations.SET_DAYS, days);
     }
   }
 });

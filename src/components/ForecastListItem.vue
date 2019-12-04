@@ -1,8 +1,8 @@
 <template>
-  <div class="forecast-list-item block">
+  <div class="hour-list__item">
     <div class="time">{{ getTime(hourWeather.dt) }}</div>
     <figure>
-      <img :src="getImgUrl(hourWeather.weather[0].icon)" alt="Sun">
+      <img class="weather-icon" :src="getImgUrl(hourWeather.weather[0].icon)" alt="Sun">
       <figcaption>
          <p>{{ hourWeather.weather[0].main }}</p>
       </figcaption>
@@ -42,7 +42,17 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-// .forecast-list-item {
-//   // display: inline-block;
-// }
+.hour-list__item {
+  border: 2px solid #888;
+  max-width: 180px;
+  height: auto;
+  text-align: center;
+}
+.time {
+  font-weight: 900;
+  margin-top: 5%;
+}
+.weather-icon {
+  width: 100%;
+}
 </style>

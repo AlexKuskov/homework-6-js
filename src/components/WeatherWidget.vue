@@ -34,5 +34,6 @@ export default {
 .weather-widget {
   width: 90%;
   padding-bottom: 5%;
+  margin: 0 auto;
 }
 </style>
