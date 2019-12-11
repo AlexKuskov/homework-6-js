@@ -1,18 +1,18 @@
 <template>
   <div class="forecast">
-    <h2 v-if="$store.state.cityName">Forecast</h2>
-    <h3>{{ $store.state.cityName }}</h3>
+    <h2 v-if="cityName">Forecast</h2>
+    <h3>{{ cityName }}</h3>
 
-    <p class="hint" v-if="$store.state.isHintDisplayed">
+    <p class="hint" v-if="isHintDisplayed">
       Please input your city/town, country
       code and press 'Show weather' button to see forecast
     </p>
 
-    <div class="loader" v-if="$store.state.isLoading"></div>
-    <div v-if="!$store.state.isLoading">
+    <div class="loader" v-if="isLoading"></div>
+    <div v-if="!isLoading">
       <div
         class="forecast-day block"
-        v-for="(day, dayIndex) of $store.state.days"
+        v-for="(day, dayIndex) of days"
         v-bind:key="dayIndex"
       >
         <h3>{{ getDate(day[0].dt) }}</h3>
@@ -30,11 +30,18 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import ForecastListItem from './ForecastListItem.vue';
 
 export default {
   name: 'Forecast',
   components: { ForecastListItem },
+  computed: mapState({
+    cityName: state => state.cityName,
+    isHintDisplayed: state => state.isHintDisplayed,
+    isLoading: state => state.isLoading,
+    days: state => state.days
+  }),
   methods: {
     getDate (date) {
       const currentDate = new Date(date * 1000);
