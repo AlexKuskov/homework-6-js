@@ -1,5 +1,5 @@
 <template>
-  <form v-on:submit="getForecastData" class="city-to-search block">
+  <form @submit.prevent="getForecastData" class="city-to-search block">
     <h2>City to search</h2>
 
     <div class="city-to-search__content">
@@ -39,7 +39,6 @@ export default {
       const key = '16930e9bdf3ad11aa05152aeebf51f84';
       const query = `https://api.openweathermap.org/data/2.5/forecast?appId=${key}&q=${this.city},${this.countryCode}`;
 
-      e.preventDefault();
       this.$store.commit(mutations.SET_HINT_DISPLAYING, false);
       this.$store.commit(mutations.SET_LOADING, true);
 
