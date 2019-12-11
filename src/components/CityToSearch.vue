@@ -101,4 +101,8 @@ export default {
   padding: 4px 6px;
   cursor: pointer;
 }
+.block {
+  border: 2px solid #888;
+  border-radius: 10px;
+}
 </style>

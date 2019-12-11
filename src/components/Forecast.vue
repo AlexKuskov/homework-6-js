@@ -89,4 +89,8 @@ export default {
   justify-content: space-evenly;
   background-color: #FFF;
 }
+.block {
+  border: 2px solid #888;
+  border-radius: 10px;
+}
 </style>
