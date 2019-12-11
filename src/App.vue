@@ -7,9 +7,7 @@ import WeatherWidget from './components/WeatherWidget.vue';
 
 export default {
   name: 'app',
-  components: {
-    'weather-widget': WeatherWidget
-  }
+  components: { WeatherWidget }
 };
 </script>
 

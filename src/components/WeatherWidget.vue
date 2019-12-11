@@ -18,8 +18,8 @@ export default {
     msg: String
   },
   components: {
-    'city-to-search': CityToSearch,
-    'forecast': Forecast
+    CityToSearch,
+    Forecast
   }
 };
 </script>

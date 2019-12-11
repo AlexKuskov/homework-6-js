@@ -39,9 +39,7 @@ export default {
   props: {
     msg: String
   },
-  components: {
-    'forecast-list-item': ForecastListItem
-  },
+  components: { ForecastListItem },
   methods: {
     getDate (date) {
       const currentDate = new Date(date * 1000);
