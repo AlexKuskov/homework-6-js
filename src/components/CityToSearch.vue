@@ -31,12 +31,10 @@ import { store } from '../store';
 
 export default {
   name: 'CityToSearch',
-  data() {
-    return {
-      city: 'Cherkasy',
-      countryCode: 'ua'
-    };
-  },
+  data: () => ({
+    city: 'Cherkasy',
+    countryCode: 'ua'
+  }),
   methods: {
     getForecastData (e) {
       const key = '16930e9bdf3ad11aa05152aeebf51f84';
