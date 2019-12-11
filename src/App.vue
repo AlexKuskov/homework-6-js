@@ -1,7 +1,5 @@
 <template>
-  <div id="app">
-    <weather-widget />
-  </div>
+  <weather-widget class="app" />
 </template>
 
 <script>
@@ -16,7 +14,7 @@ export default {
 </script>
 
 <style lang="scss">
-#app {
+.app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
