@@ -25,7 +25,6 @@
 </template>
 
 <script>
-import Vue from 'vue';
 import axios from 'axios';
 import { mutations, actions } from '../store/mutation-types';
 import { store } from '../store';

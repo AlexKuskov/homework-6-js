@@ -30,8 +30,6 @@
 </template>
 
 <script>
-import Vue from 'vue';
-import axios from 'axios';
 import ForecastListItem from './ForecastListItem.vue';
 
 export default {

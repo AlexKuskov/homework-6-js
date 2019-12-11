@@ -7,8 +7,6 @@
 </template>
 
 <script>
-import Vue from 'vue';
-import axios from 'axios';
 import CityToSearch from './CityToSearch.vue';
 import Forecast from './Forecast.vue';
 
