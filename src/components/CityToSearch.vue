@@ -32,9 +32,6 @@ import { store } from '../store';
 
 export default {
   name: 'CityToSearch',
-  props: {
-    msg: String
-  },
   data() {
     return {
       city: 'Cherkasy',

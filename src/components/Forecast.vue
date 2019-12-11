@@ -36,9 +36,6 @@ import ForecastListItem from './ForecastListItem.vue';
 
 export default {
   name: 'Forecast',
-  props: {
-    msg: String
-  },
   components: { ForecastListItem },
   methods: {
     getDate (date) {

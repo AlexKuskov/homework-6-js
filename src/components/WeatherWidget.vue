@@ -14,9 +14,6 @@ import Forecast from './Forecast.vue';
 
 export default {
   name: 'WeatherWidget',
-  props: {
-    msg: String
-  },
   components: {
     CityToSearch,
     Forecast
