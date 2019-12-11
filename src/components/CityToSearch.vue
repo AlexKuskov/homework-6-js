@@ -1,5 +1,5 @@
 <template>
-  <form v-on:submit="getForecastData" id="city-to-search" class="city-to-search block">
+  <form v-on:submit="getForecastData" class="city-to-search block">
     <h2>City to search</h2>
 
     <div class="city-to-search__content">
@@ -27,7 +27,6 @@
 <script>
 import axios from 'axios';
 import { mutations, actions } from '../store/mutation-types';
-import { store } from '../store';
 
 export default {
   name: 'CityToSearch',
@@ -41,14 +40,14 @@ export default {
       const query = `https://api.openweathermap.org/data/2.5/forecast?appId=${key}&q=${this.city},${this.countryCode}`;
 
       e.preventDefault();
-      store.commit(mutations.SET_HINT_DISPLAYING, false);
-      store.commit(mutations.SET_LOADING, true);
+      this.$store.commit(mutations.SET_HINT_DISPLAYING, false);
+      this.$store.commit(mutations.SET_LOADING, true);
 
       axios.get(query)
-        .then(function (response) {
-          store.dispatch(actions.SET_UNIQUE_DAYS, response.data.list);
-          store.commit(mutations.SET_CITY_NAME, response.data.city.name);
-          store.commit(mutations.SET_LOADING, false);
+        .then(response => {
+          this.$store.dispatch(actions.SET_UNIQUE_DAYS, response.data.list);
+          this.$store.commit(mutations.SET_CITY_NAME, response.data.city.name);
+          this.$store.commit(mutations.SET_LOADING, false);
         });
     }
   }
