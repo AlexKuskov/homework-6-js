@@ -37,12 +37,13 @@ export default {
   methods: {
     getForecastData (e) {
       const key = '16930e9bdf3ad11aa05152aeebf51f84';
-      const query = `https://api.openweathermap.org/data/2.5/forecast?appId=${key}&q=${this.city},${this.countryCode}`;
+      const query = "https://api.openweathermap.org/data/2.5/forecast";
+      const params = { appId: key, q: `${this.city},${this.countryCode}` };
 
       this.$store.commit(mutations.SET_HINT_DISPLAYING, false);
       this.$store.commit(mutations.SET_LOADING, true);
 
-      axios.get(query)
+      axios.get(query, { params })
         .then(response => {
           this.$store.dispatch(actions.SET_UNIQUE_DAYS, response.data.list);
           this.$store.commit(mutations.SET_CITY_NAME, response.data.city.name);
