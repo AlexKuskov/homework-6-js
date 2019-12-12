@@ -9,7 +9,7 @@
     </p>
 
     <div class="loader" v-if="isLoading"></div>
-    <div v-if="!isLoading">
+    <template v-else>
       <div
         class="forecast-day block"
         v-for="(day, dayIndex) of days"
@@ -25,7 +25,7 @@
           </div>
         </div>
       </div>
-    </div>
+    </template>
   </div>
 </template>
 
