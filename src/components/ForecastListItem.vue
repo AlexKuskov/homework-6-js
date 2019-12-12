@@ -25,7 +25,7 @@ export default {
       return currentDate.toLocaleTimeString('ru-RU', options);
     },
     getImgUrl(weatherIcon) {
-      var images = require.context('../assets/images/', false, /\.png$/);
+      const images = require.context('../assets/images/', false, /\.png$/);
 
       return images('./' + weatherIcon + "@2x.png");
     },
@@ -39,7 +39,7 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped lang="scss">
+<style scoped>
 .hour-list__item {
   border: 2px solid #888;
   max-width: 180px;
