@@ -13,13 +13,13 @@
       <div
         class="forecast-day block"
         v-for="(day, dayIndex) of days"
-        v-bind:key="dayIndex"
+        :key="dayIndex"
       >
         <h3>{{ getDate(day[0].dt) }}</h3>
         <div class="hour-list">
           <div
             v-for="(hour, hourIndex) of day"
-            v-bind:key="hourIndex + 10"
+            :key="hourIndex + 10"
           >
             <forecast-list-item :hourWeather="hour" />
           </div>
