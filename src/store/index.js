@@ -6,7 +6,7 @@ Vue.use(Vuex);
 
 export const store = new Vuex.Store({
   state: {
-    days: 0,
+    days: [],
     cityName: '',
     isHintDisplayed: true,
     isLoading: false,

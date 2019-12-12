@@ -12,18 +12,19 @@
     <template v-else>
       <div
         class="forecast-day block"
-        v-for="(day, dayIndex) of days"
-        :key="dayIndex"
+        v-for="day of days"
+        :key="day.dt"
       >
         <h3>{{ getDate(day[0].dt) }}</h3>
-        <div class="hour-list">
-          <div
+        <ul class="hour-list">
+          <li
+            class="hour-list-item"
             v-for="(hour, hourIndex) of day"
             :key="hourIndex + 10"
           >
             <forecast-list-item :hourWeather="hour" />
-          </div>
-        </div>
+          </li>
+        </ul>
       </div>
     </template>
   </div>
@@ -90,6 +91,11 @@ export default {
   display: flex;
   justify-content: space-evenly;
   background-color: #FFF;
+  padding: 0;
+  margin: 0;
+}
+.hour-list-item {
+  list-style-type: none;
 }
 .block {
   border: 2px solid #888;
