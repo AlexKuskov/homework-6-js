@@ -25,8 +25,4 @@ export default {
   padding-bottom: 5%;
   margin: 0 auto;
 }
-.block {
-  border: 2px solid #888;
-  border-radius: 10px;
-}
 </style>

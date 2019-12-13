@@ -96,8 +96,4 @@ export default {
 .hour-list-item {
   list-style-type: none;
 }
-.block {
-  border: 2px solid #888;
-  border-radius: 10px;
-}
 </style>
