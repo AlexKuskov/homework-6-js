@@ -37,12 +37,12 @@ import ForecastListItem from './ForecastListItem.vue';
 export default {
   name: 'Forecast',
   components: { ForecastListItem },
-  computed: mapState({
-    cityName: state => state.cityName,
-    isHintDisplayed: state => state.isHintDisplayed,
-    isLoading: state => state.isLoading,
-    days: state => state.days
-  }),
+  computed: mapState([
+    'cityName',
+    'isHintDisplayed',
+    'isLoading',
+    'days'
+  ]),
   methods: {
     getDate (date) {
       const currentDate = new Date(date * 1000);
