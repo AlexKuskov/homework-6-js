@@ -27,6 +27,8 @@
 <script>
 import axios from 'axios';
 import { mutations, actions } from '../store/mutation-types';
+import { mapMutations } from 'vuex';
+import { mapActions } from 'vuex';
 
 export default {
   name: 'CityToSearch',
@@ -35,19 +37,27 @@ export default {
     countryCode: 'ua'
   }),
   methods: {
-    getForecastData (e) {
+    ...mapMutations({
+      setHintDisplaying: mutations.SET_HINT_DISPLAYING,
+      setLoading: mutations.SET_LOADING,
+      setCityName: mutations.SET_CITY_NAME
+    }),
+    ...mapActions({
+      setUniqueDays: actions.SET_UNIQUE_DAYS
+    }),
+    getForecastData () {
       const key = '16930e9bdf3ad11aa05152aeebf51f84';
       const query = "https://api.openweathermap.org/data/2.5/forecast";
       const params = { appId: key, q: `${this.city},${this.countryCode}` };
 
-      this.$store.commit(mutations.SET_HINT_DISPLAYING, false);
-      this.$store.commit(mutations.SET_LOADING, true);
+      this.setHintDisplaying(false);
+      this.setLoading(true);
 
       axios.get(query, { params })
         .then(response => {
-          this.$store.dispatch(actions.SET_UNIQUE_DAYS, response.data.list);
-          this.$store.commit(mutations.SET_CITY_NAME, response.data.city.name);
-          this.$store.commit(mutations.SET_LOADING, false);
+          this.setUniqueDays(response.data.list);
+          this.setCityName(response.data.city.name);
+          this.setLoading(false);
         });
     }
   }
